@@ -164,9 +164,28 @@ def test_no_marca_como_problema_una_mejora():
 
 def test_el_reporte_tiene_las_secciones_esperadas():
     md = redactar(DATOS, date(2026, 8, 3))
-    for seccion in ("Lo que mejoró", "Lo que bajó", "Qué revisar esta semana",
+    for seccion in ("Lo que mejoró", "Lo que empeoró", "Qué revisar esta semana",
                     "Dato de la semana"):
         assert seccion in md, f"falta la sección: {seccion}"
+
+
+def test_una_metrica_de_menos_es_mejor_que_sube_se_describe_como_subida():
+    """Los días de respuesta subiendo es malo, pero NO es una 'caída'.
+
+    Decir 'cayó 22 %' junto a un '+22 %' es contradictorio y le hace perder
+    credibilidad al reporte completo.
+    """
+    empeora = [{"id": "respuesta", "etiqueta": "Días a primera respuesta",
+                "valor": 2.4, "variacion": 22.0, "unidad": " días",
+                "mejor": "abajo"}]
+    puntos = puntos_de_atencion(empeora)
+    assert puntos, "una subida de 22 % en días de respuesta debe alertar"
+    assert "subió" in puntos[0], f"debería decir 'subió': {puntos[0]}"
+    assert "cayó" not in puntos[0]
+
+    md = redactar({**DATOS, "kpis": empeora}, date(2026, 8, 3))
+    assert "Lo que empeoró" in md
+    assert "Lo que bajó" not in md, "un +22 % no puede ir bajo 'Lo que bajó'"
 
 
 def test_el_reporte_no_inventa_numeros():
