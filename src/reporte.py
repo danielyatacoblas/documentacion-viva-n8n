@@ -69,8 +69,11 @@ def puntos_de_atencion(kpis: list[dict]) -> list[str]:
     for k in kpis:
         if abs(k.get("variacion", 0)) >= CAMBIO_FUERTE and not _es_bueno(k):
             que = recomendaciones.get(k["id"], "revisar la fuente de datos")
+            # "cayó" solo si el número bajó; si la métrica es de las que
+            # conviene reducir (días de respuesta), subir es la mala noticia.
+            verbo = "subió" if k["variacion"] > 0 else "cayó"
             salida.append(
-                f"**{k['etiqueta']}** cayó {abs(k['variacion']):.1f} % "
+                f"**{k['etiqueta']}** {verbo} {abs(k['variacion']):.1f} % "
                 f"(ahora {_formato(k['valor'], k['unidad'])}): {que}.")
     return salida
 
@@ -97,13 +100,16 @@ def redactar(datos: dict, hoy: date | None = None) -> str:
             f"({k['variacion']:+.1f} %)" for k in items)
         return f"\n### {signo} {titulo}\n\n{filas}\n"
 
+    # Los encabezados hablan de "mejoró/empeoró", no de "subió/bajó": en
+    # métricas como los días de respuesta, subir ES empeorar.
+
     cuerpo = [
         f"# Reporte semanal · Club STEM\n",
         f"**Semana del {hoy.isoformat()}** · "
         f"período analizado: {periodo.get('desde', '?')} al {periodo.get('hasta', '?')}\n",
         f"\n{cabecera}\n",
         bloque("Lo que mejoró", grupos["mejoras"], "📈"),
-        bloque("Lo que bajó", grupos["caidas"], "📉"),
+        bloque("Lo que empeoró", grupos["caidas"], "📉"),
     ]
 
     if atencion:
