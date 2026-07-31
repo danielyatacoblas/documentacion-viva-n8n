@@ -1,0 +1,5 @@
+# Corre con la librería estándar de Python. Dependencia solo para tests:
+pytest>=8.0
+
+# Opcional: solo si quieres usar Claude en vez del motor de reglas
+# anthropic>=0.40
