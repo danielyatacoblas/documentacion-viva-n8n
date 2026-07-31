@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+# Salidas generadas (se regeneran con los scripts)
+data/bandeja_clasificada.csv
+reportes/
