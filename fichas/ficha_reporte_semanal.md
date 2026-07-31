@@ -2,7 +2,8 @@
 
 > Generada automáticamente desde el JSON del workflow.
 > Regenerar con: `python scripts/generar_fichas.py`
-> Última revisión: **2026-07-30** · Responsable: **Coordinación**
+> Responsable: **Coordinación**
+> Última generación: **2026-07-31**
 
 ## 1. Qué hace
 
@@ -18,7 +19,7 @@ Etiquetas: club-stem, reportes
 
 ## 3. Cuándo se dispara
 
-- **Cada lunes 08:00** — Programado — cada martes a las 08:00
+- **Cada lunes 08:00** — Programado — cada lunes a las 08:00
 
 ## 4. Servicios que toca
 

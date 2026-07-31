@@ -105,6 +105,44 @@ def test_el_borrador_de_queja_pide_detalles_y_no_promete_nada():
     assert "?" in c.borrador, "debe preguntar para entender qué pasó"
 
 
+# ── falsos positivos (cortesía peruana que no es queja ni urgencia) ─────────
+
+def test_disculpe_la_molestia_no_es_una_queja():
+    """'Disculpe la molestia' es fórmula de cortesía, no un reclamo."""
+    c = clasificar(correo("Consulta",
+                          "Disculpe la molestia, quisiera inscribir a mi hija"))
+    assert c.categoria == "inscripcion", f"lo clasificó como {c.categoria}"
+    assert c.requiere_humano is False
+
+
+def test_mencionar_manana_no_vuelve_urgente_el_correo():
+    c = clasificar(correo("Consulta",
+                          "Mi hijo tiene el taller mañana, ¿a qué hora empieza?"))
+    assert c.urgente is False
+    assert c.prioridad != "alta"
+
+
+def test_trabajar_en_una_empresa_no_es_una_propuesta_de_alianza():
+    c = clasificar(correo("Voluntariado",
+                          "Trabajo en una empresa y quiero ser voluntario"))
+    assert c.categoria == "voluntariado", f"lo clasificó como {c.categoria}"
+
+
+def test_una_propuesta_real_de_alianza_si_se_detecta():
+    c = clasificar(correo("Propuesta",
+                          "Represento a una empresa y queremos auspiciar"))
+    assert c.categoria == "alianza"
+    assert c.requiere_humano is True
+
+
+def test_un_reclamo_real_si_se_detecta():
+    for texto in ("Estoy muy molesto con el servicio",
+                  "Es la tercera vez que escribo y nadie responde",
+                  "Quiero presentar un reclamo formal"):
+        c = clasificar(correo("Asunto", texto))
+        assert c.requiere_humano is True, f"no escaló: {texto}"
+
+
 # ── bandeja ordenada ────────────────────────────────────────────────────────
 
 def test_ordenar_bandeja_pone_lo_urgente_arriba_y_el_spam_abajo():

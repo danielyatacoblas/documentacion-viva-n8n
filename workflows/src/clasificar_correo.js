@@ -39,6 +39,25 @@ function clasificarPorReglas(correo) {
   return { categoria, prioridad, urgente, requiere_humano: requiereHumano };
 }
 
+const BORRADORES = {
+  inscripcion: '¡Hola {nombre}! Gracias por escribirnos. Te comparto la información de nuestros talleres: fechas, horarios y el enlace de inscripción.',
+  voluntariado: '¡Hola {nombre}! Nos alegra mucho tu interés en ser voluntario/a. Te cuento cómo funciona el programa y cuándo es el próximo onboarding.',
+  alianza: 'Estimado/a {nombre}, gracias por su interés en apoyar al Club STEM. Le comparto nuestra presentación institucional.',
+  queja: 'Estimado/a {nombre}, lamento mucho la situación. ¿Podría contarme en qué taller y fecha ocurrió para poder resolverlo?',
+  administrativo: 'Hola {nombre}, recibimos su solicitud. La derivo al área administrativa y le respondemos a la brevedad.',
+  spam: '',
+  otro: '¡Hola {nombre}! Gracias por escribirnos al Club STEM. Un miembro del equipo revisará tu mensaje y te responderá pronto.',
+};
+
+// Si la IA no respondió, el respaldo igual deja un borrador listo: el equipo
+// no debería quedarse sin nada solo porque la API falló.
+function borradorPorReglas(categoria, correo) {
+  const plantilla = BORRADORES[categoria] || BORRADORES.otro;
+  if (!plantilla) return '';
+  const nombre = String(correo.nombre || String(correo.remitente || '').split('@')[0] || 'hola');
+  return plantilla.replace('{nombre}', nombre.charAt(0).toUpperCase() + nombre.slice(1));
+}
+
 const salida = [];
 
 for (const item of $input.all()) {
@@ -71,7 +90,7 @@ for (const item of $input.all()) {
       // La regla dura se aplica SIEMPRE, aunque la IA diga lo contrario:
       requiere_humano: Boolean(base.requiere_humano)
         || base.categoria === 'queja' || base.categoria === 'alianza',
-      borrador: valido ? (clasif.borrador || '') : '',
+      borrador: valido ? (clasif.borrador || '') : borradorPorReglas(base.categoria, correo),
       motor: valido ? 'claude' : 'reglas (respaldo)',
       revisado_por: '',
       estado: 'pendiente',

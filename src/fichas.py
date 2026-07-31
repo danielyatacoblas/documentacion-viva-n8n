@@ -55,7 +55,10 @@ LOGICA = {
     "n8n-nodes-base.merge": "Unión de ramas",
 }
 
-DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+# Ojo con el orden: en cron el día de la semana empieza en DOMINGO (0),
+# no en lunes. Confundirlos hace que "0 8 * * 1" se lea como martes.
+DIAS_CRON = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes",
+             "sábado"]
 
 
 # ── lectura del workflow ────────────────────────────────────────────────────
@@ -103,7 +106,7 @@ def _traducir_cron(expr: str) -> str:
     if dia_sem == "*":
         return f"todos los días a las {hhmm}"
     if dia_sem.isdigit():
-        return f"cada {DIAS[int(dia_sem) % 7]} a las {hhmm}"
+        return f"cada {DIAS_CRON[int(dia_sem) % 7]} a las {hhmm}"
     return f"cron `{expr}` (aprox. {hhmm})"
 
 
@@ -235,7 +238,8 @@ def generar_ficha(info: dict, *, que_hace: str = "", si_falla: list[str] | None 
 
 > Generada automáticamente desde el JSON del workflow.
 > Regenerar con: `python scripts/generar_fichas.py`
-> Última revisión: **{f}** · Responsable: **{responsable}**
+> Responsable: **{responsable}**
+> Última generación: **{f}**
 
 ## 1. Qué hace
 

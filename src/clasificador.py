@@ -29,10 +29,16 @@ def _sin_tildes(s: str) -> str:
 # ── señales por categoría (orden = prioridad de match) ──────────────────────
 
 _SENALES = {
-    "queja": ("queja", "reclamo", "molest", "pesim", "mal servicio", "denunc",
-              "inaceptable", "devolucion", "reembolso"),
+    # "molest" salía disparado con "disculpe la molestia", que en Perú es una
+    # fórmula de cortesía: se usan solo formas que sí indican reclamo.
+    "queja": ("queja", "reclamo", "me molesta", "estoy molest", "muy molest",
+              "pesim", "mal servicio", "denunc", "inaceptable", "devolucion",
+              "reembolso", "nadie me responde", "psimo"),
+    # "empresa" sola no es una alianza: quien escribe desde su trabajo para
+    # ofrecerse como voluntario no es un auspiciador.
     "alianza": ("alianza", "auspicio", "sponsor", "convenio", "rse",
-                "responsabilidad social", "donacion", "donar", "empresa"),
+                "responsabilidad social", "donacion", "donar",
+                "nuestra empresa", "mi empresa", "representamos", "represento"),
     "voluntariado": ("voluntari", "ser mentor", "quiero ayudar", "colaborar",
                      "apoyar como"),
     "inscripcion": ("inscri", "matricul", "vacante", "cupo", "taller",
@@ -44,8 +50,12 @@ _SENALES = {
              "criptomoneda", "gane dinero", "haga clic aqui", "oferta unica"),
 }
 
-_URGENTES = ("urgente", "hoy mismo", "manana", "cuanto antes", "de inmediato",
-             "ya paso", "sigo esperando", "es la tercera vez", "nadie responde")
+# "manana" a secas marcaba como urgente un "el taller es mañana, ¿a qué hora?".
+# Se exige una señal real de urgencia o de reclamo por demora.
+_URGENTES = ("urgente", "hoy mismo", "para manana", "es para manana",
+             "cuanto antes", "de inmediato", "lo antes posible",
+             "sigo esperando", "es la tercera vez", "nadie responde",
+             "aun no me responden")
 
 _RESPUESTAS = {
     "inscripcion": ("¡Hola {nombre}! Gracias por escribirnos. Te comparto la "
@@ -169,13 +179,23 @@ def clasificar_con_claude(correo: dict, modelo: str = "claude-sonnet-5") -> Clas
     datos = _json.loads(bloque.group(0)) if bloque else {}
 
     cat = datos.get("categoria", "otro")
+    if cat not in CATEGORIAS:
+        cat = "otro"
+    urgente = bool(datos.get("urgente"))
+
+    # La regla dura se aplica SIEMPRE, aunque el modelo diga lo contrario:
+    # una queja, una alianza o un correo urgente los contesta una persona.
+    # (El nodo de n8n aplica exactamente la misma regla; hay tests de ambos.)
+    requiere_humano = (bool(datos.get("requiere_humano"))
+                       or cat in ("queja", "alianza") or urgente)
+
     return Clasificacion(
         id=correo.get("id", ""), remitente=correo.get("remitente", ""),
         asunto=correo.get("asunto", ""),
-        categoria=cat if cat in CATEGORIAS else "otro",
+        categoria=cat,
         prioridad=datos.get("prioridad", "media"),
-        urgente=bool(datos.get("urgente")),
-        requiere_humano=bool(datos.get("requiere_humano")),
+        urgente=urgente,
+        requiere_humano=requiere_humano,
         borrador=datos.get("borrador", ""), senales=[], motor="claude")
 
 

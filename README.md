@@ -1,11 +1,11 @@
 # 04 · Asistente IA + documentación viva
 
-[![tests](https://img.shields.io/badge/tests-41%20passed-brightgreen)](tests/)
+[![tests](https://img.shields.io/badge/tests-47%20passed-brightgreen)](tests/)
 [![fichas](https://img.shields.io/badge/fichas-5%20autogeneradas-blueviolet)](fichas/)
 [![IA](https://img.shields.io/badge/IA-Claude%20(opcional)-8A63D2)](src/clasificador.py)
 [![licencia](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
 
-**Valida del aviso:** implementar IA generativa (incluyendo **Claude Code**)
+**Qué requisitos del aviso cubre:** implementar IA generativa (incluyendo **Claude Code**)
 para optimizar flujos internos · explorar nuevos casos de uso de IA ·
 **documentar los sistemas para que el equipo pueda mantenerlos a futuro**.
 
@@ -98,7 +98,7 @@ pip install pytest
 python scripts/generar_correos.py       # 30 correos ficticios
 python scripts/generar_fichas.py        # documentación de los workflows reales
 python scripts/simular_asistente.py     # las tres automatizaciones
-python -m pytest tests/ -v              # 41 tests
+python -m pytest tests/ -v              # 47 tests
 ```
 
 Con Claude (opcional): `pip install anthropic`, exporta `ANTHROPIC_API_KEY` y
@@ -177,5 +177,5 @@ que aplicaría desde el primer día en el Club:
 
 ## 📌 Estado
 
-✅ **Funcional y probado en local.** 41 tests en verde, 5 fichas generadas desde
+✅ **Funcional y probado en local.** 47 tests en verde, 5 fichas generadas desde
 workflows reales, 30 correos ficticios y dos workflows n8n importables.

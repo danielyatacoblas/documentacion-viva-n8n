@@ -2,7 +2,8 @@
 
 > Generada automáticamente desde el JSON del workflow.
 > Regenerar con: `python scripts/generar_fichas.py`
-> Última revisión: **2026-07-30** · Responsable: **Comunicaciones**
+> Responsable: **Comunicaciones**
+> Última generación: **2026-07-31**
 
 ## 1. Qué hace
 
