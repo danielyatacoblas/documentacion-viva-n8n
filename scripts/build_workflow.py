@@ -54,6 +54,10 @@ def build_bandeja(js: str) -> dict:
         _node("claude", "Claude · Clasificar y redactar", "n8n-nodes-base.httpRequest", 4.2,
               [180, 300],
               {"method": "POST", "url": "https://api.anthropic.com/v1/messages",
+               # La API key va en una credencial de n8n (Header Auth con
+               # x-api-key), nunca en el JSON: este archivo se versiona en git.
+               "authentication": "genericCredentialType",
+               "genericAuthType": "httpHeaderAuth",
                "sendHeaders": True,
                "headerParameters": {"parameters": [
                    {"name": "anthropic-version", "value": "2023-06-01"},
@@ -66,7 +70,8 @@ def build_bandeja(js: str) -> dict:
                            "categoria, prioridad, urgente, requiere_humano, borrador.\\n\\n' "
                            "+ 'Asunto: ' + $json.correo.asunto + '\\n' + $json.correo.cuerpo }] }) }}",
                "options": {}},
-              {"onError": "continueRegularOutput",
+              {"credentials": {"httpHeaderAuth": {"name": "Anthropic API key"}},
+               "onError": "continueRegularOutput",
                "notes": "Si la IA falla, el siguiente nodo clasifica por reglas"}),
         _node("clasif", "Clasificar (con respaldo por reglas)", "n8n-nodes-base.code", 2,
               [420, 300], {"jsCode": js},
