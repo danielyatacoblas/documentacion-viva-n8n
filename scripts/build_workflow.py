@@ -115,7 +115,8 @@ def build_bandeja(js: str) -> dict:
             [{"node": "Avisar al equipo", "type": "main", "index": 0}],
             [{"node": "Queda en cola para revisión", "type": "main", "index": 0}]]},
     }
-    return {"name": "Club STEM · Bandeja de entrada con IA",
+    return {"id": "clubstembandeja",
+            "name": "Club STEM · Bandeja de entrada con IA",
             "nodes": nodes, "connections": connections,
             "settings": {"executionOrder": "v1"}, "pinData": {},
             "tags": [{"name": "club-stem"}, {"name": "ia"}]}
@@ -179,7 +180,8 @@ def build_reporte() -> dict:
         "Armar el resumen": {"main": [[{"node": "Enviar al equipo", "type": "main", "index": 0}]]},
         "Enviar al equipo": {"main": [[], [{"node": "Avisar si no se pudo enviar", "type": "main", "index": 0}]]},
     }
-    return {"name": "Club STEM · Reporte semanal automático",
+    return {"id": "clubstemreporte",
+            "name": "Club STEM · Reporte semanal automático",
             "nodes": nodes, "connections": connections,
             "settings": {"executionOrder": "v1"}, "pinData": {},
             "tags": [{"name": "club-stem"}, {"name": "reportes"}]}
