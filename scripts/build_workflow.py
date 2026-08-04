@@ -97,7 +97,7 @@ def build_bandeja(js: str) -> dict:
         _node("aviso", "Avisar al equipo", "n8n-nodes-base.telegram", 1.2,
               [1120, 220],
               {"chatId": "REEMPLAZAR_CHAT_ID",
-               "text": "=🔔 Correo que necesita respuesta humana "
+               "text": "= Correo que necesita respuesta humana "
                        "[{{ $json.categoria }} · {{ $json.prioridad }}]\n"
                        "De: {{ $json.remitente }}\nAsunto: {{ $json.asunto }}",
                "additionalFields": {}}),
@@ -171,7 +171,7 @@ def build_reporte() -> dict:
         _node("err", "Avisar si no se pudo enviar", "n8n-nodes-base.telegram", 1.2,
               [660, 420],
               {"chatId": "REEMPLAZAR_CHAT_ID",
-               "text": "⚠️ No se pudo enviar el reporte semanal por correo.",
+               "text": " No se pudo enviar el reporte semanal por correo.",
                "additionalFields": {}}),
     ]
     connections = {

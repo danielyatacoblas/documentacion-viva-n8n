@@ -3,7 +3,7 @@
 > Generada automáticamente desde el JSON del workflow.
 > Regenerar con: `python scripts/generar_fichas.py`
 > Responsable: **Coordinación**
-> Última generación: **2026-07-31**
+> Última generación: **2026-08-04**
 
 ## 1. Qué hace
 
@@ -27,7 +27,7 @@ Etiquetas: club-stem, reportes
 - HTTP (API externa)
 - Telegram
 
-> ⚠️ **Antes de activarlo hay que configurar:**
+>  **Antes de activarlo hay que configurar:**
 
 - `REEMPLAZAR_CHAT_ID`
 - `REEMPLAZAR_CORREO_EQUIPO`
