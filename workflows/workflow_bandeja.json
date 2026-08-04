@@ -151,7 +151,7 @@
     {
       "parameters": {
         "chatId": "REEMPLAZAR_CHAT_ID",
-        "text": "=🔔 Correo que necesita respuesta humana [{{ $json.categoria }} · {{ $json.prioridad }}]\nDe: {{ $json.remitente }}\nAsunto: {{ $json.asunto }}",
+        "text": "= Correo que necesita respuesta humana [{{ $json.categoria }} · {{ $json.prioridad }}]\nDe: {{ $json.remitente }}\nAsunto: {{ $json.asunto }}",
         "additionalFields": {}
       },
       "id": "aviso",

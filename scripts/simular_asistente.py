@@ -8,7 +8,7 @@
 Salidas:
     data/bandeja_clasificada.csv   ← la bandeja priorizada con borradores
     reportes/reporte_semanal.md    ← el resumen ejecutivo del lunes
-    fichas/                        ← documentación viva (script aparte)
+    fichas/ ← documentación viva (script aparte)
 """
 from __future__ import annotations
 
@@ -64,7 +64,7 @@ def main():
 
     print("\n   Primeros 3 de la cola (así los vería el equipo):")
     for c in clasificados[:3]:
-        marca = "👤 requiere persona" if c.requiere_humano else "🤖 borrador listo"
+        marca = " requiere persona" if c.requiere_humano else " borrador listo"
         print(f"     [{c.prioridad.upper():<5}] {c.categoria:<14} {marca}")
         print(f"             «{c.asunto}»")
 
@@ -75,7 +75,8 @@ def main():
              for c in clasificados]
     salida_bandeja = ROOT / "data" / "bandeja_clasificada.csv"
     with salida_bandeja.open("w", newline="", encoding="utf-8") as f:
-        wr = csv.DictWriter(f, fieldnames=list(filas[0].keys()))
+        wr = csv.DictWriter(f, fieldnames=list(filas[0].keys(, lineterminator="
+")))
         wr.writeheader(); wr.writerows(filas)
 
     # ── 2. Reporte semanal ──
@@ -91,7 +92,7 @@ def main():
         print(f"   Secciones: {', '.join(l.replace('### ', '') for l in lineas)}")
         print(f"   ✓ {destino.relative_to(ROOT)}")
     else:
-        print("   ⚠ No se encontró el datos.json del proyecto 03.")
+        print("    No se encontró el datos.json del proyecto 03.")
         print("     Corre primero: cd ../03_dashboard_kpis && "
               "python scripts/construir_dashboard.py")
 

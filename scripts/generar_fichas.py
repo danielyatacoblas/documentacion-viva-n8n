@@ -176,7 +176,7 @@ def main():
 
     print(f"\n✓ {len(generadas)} fichas generadas desde los workflows reales")
     if faltantes:
-        print("\n⚠ No se encontraron estos workflows (¿ya construiste ese proyecto?):")
+        print("\n No se encontraron estos workflows (¿ya construiste ese proyecto?):")
         for f in faltantes:
             print(f"   · {f}")
     print("\nRegenera las fichas cada vez que cambies un workflow:")

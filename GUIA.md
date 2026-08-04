@@ -11,7 +11,7 @@ para optimizar flujos internos · explorar nuevos casos de uso de IA ·
 
 ---
 
-## 🎬 Tres automatizaciones + el sistema que las mantiene documentadas
+## Tres automatizaciones + el sistema que las mantiene documentadas
 
 ### A · Documentación viva — *la pieza central*
 
@@ -33,13 +33,13 @@ python scripts/generar_fichas.py
 
 | Sección de la ficha | Quién la escribe |
 | --- | --- |
-| Qué hace / por qué existe | ✍️ Humano |
-| Dónde corre y con qué etiquetas | 🤖 Del JSON |
-| **Cuándo se dispara** (traduce `0 8 * * *` → "todos los días a las 08:00") | 🤖 Del JSON |
-| **Servicios que toca** y parámetros `REEMPLAZAR_*` pendientes | 🤖 Del JSON |
-| **Pasos en orden real de ejecución** (recorre las conexiones) | 🤖 Del JSON |
-| **Riesgos**: nodos externos sin ruta de error declarada | 🤖 Del JSON |
-| Qué hacer si falla | ✍️ Humano |
+| Qué hace / por qué existe | Humano |
+| Dónde corre y con qué etiquetas | Del JSON |
+| **Cuándo se dispara** (traduce `0 8 * * *` → "todos los días a las 08:00") | Del JSON |
+| **Servicios que toca** y parámetros `REEMPLAZAR_*` pendientes | Del JSON |
+| **Pasos en orden real de ejecución** (recorre las conexiones) | Del JSON |
+| **Riesgos**: nodos externos sin ruta de error declarada | Del JSON |
+| Qué hacer si falla | Humano |
 
 > El sistema **se documenta a sí mismo**: dos de las cinco fichas son de sus
 > propios workflows.
@@ -74,24 +74,24 @@ Lee los KPIs del dashboard (proyecto 03) y redacta el resumen del lunes.
 **Diseñado para señalar problemas**, no para felicitar:
 
 ```markdown
-### 📉 Lo que bajó
+### Lo que bajó
 - **Clics de email**: 4.1 % (-24.0 %)
 - **Beneficiarios activos**: 58 (-15.9 %)
 
-### 🔍 Qué revisar esta semana
+### Qué revisar esta semana
 1. **Clics de email** cayó 24.0 %: revisar el contenido y la ubicación del
    llamado a la acción dentro del correo.
 2. **Beneficiarios activos** cayó 15.9 %: confirmar que la asistencia se está
    registrando completa.
 
-### 💡 Dato de la semana
+### Dato de la semana
 El canal que mejor convierte es **referido** (66.7 %) y el que menos,
 **facebook** (20.9 %). La diferencia es de 45.8 puntos.
 ```
 
 ---
 
-## ⚡ Probarlo en 2 minutos (sin API key)
+## Probarlo en 2 minutos (sin API key)
 
 ```bash
 pip install pytest
@@ -107,7 +107,7 @@ reglas y lo deja registrado en la columna `motor`.
 
 ---
 
-## 🐳 Con n8n
+## Con n8n
 
 ```bash
 docker compose up -d      # http://localhost:5678
@@ -120,7 +120,7 @@ docker compose up -d      # http://localhost:5678
 
 ---
 
-## 🤝 Cómo uso Claude Code (lo que el aviso pide explícitamente)
+## Cómo uso Claude Code (lo que el aviso pide explícitamente)
 
 Este portafolio completo se construyó con Claude Code, y de ahí salen prácticas
 que aplicaría desde el primer día en el Club:
@@ -137,7 +137,7 @@ que aplicaría desde el primer día en el Club:
 
 ---
 
-## 📁 Estructura
+## Estructura
 
 ```
 04_asistente_ia_documentacion/
@@ -159,7 +159,7 @@ que aplicaría desde el primer día en el Club:
 
 ---
 
-## 🧪 Qué está probado
+## Qué está probado
 
 | Área | Tests |
 | --- | --- |
@@ -175,7 +175,7 @@ que aplicaría desde el primer día en el Club:
 
 ---
 
-## 📌 Estado
+## Estado
 
-✅ **Funcional y probado en local.** 47 tests en verde, 5 fichas generadas desde
+ **Funcional y probado en local.** 47 tests en verde, 5 fichas generadas desde
 workflows reales, 30 correos ficticios y dos workflows n8n importables.

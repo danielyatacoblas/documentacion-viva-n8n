@@ -70,7 +70,7 @@
     {
       "parameters": {
         "chatId": "REEMPLAZAR_CHAT_ID",
-        "text": "⚠️ No se pudo enviar el reporte semanal por correo.",
+        "text": " No se pudo enviar el reporte semanal por correo.",
         "additionalFields": {}
       },
       "id": "err",
