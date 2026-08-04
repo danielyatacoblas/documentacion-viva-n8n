@@ -108,28 +108,28 @@ def redactar(datos: dict, hoy: date | None = None) -> str:
         f"**Semana del {hoy.isoformat()}** · "
         f"período analizado: {periodo.get('desde', '?')} al {periodo.get('hasta', '?')}\n",
         f"\n{cabecera}\n",
-        bloque("Lo que mejoró", grupos["mejoras"], "📈"),
-        bloque("Lo que empeoró", grupos["caidas"], "📉"),
+        bloque("Lo que mejoró", grupos["mejoras"], ""),
+        bloque("Lo que empeoró", grupos["caidas"], ""),
     ]
 
     if atencion:
-        cuerpo.append("\n### 🔍 Qué revisar esta semana\n\n"
+        cuerpo.append("\n### Qué revisar esta semana\n\n"
                       + "\n".join(f"{i}. {p}" for i, p in enumerate(atencion, 1)) + "\n")
     else:
-        cuerpo.append("\n### 🔍 Qué revisar esta semana\n\n"
+        cuerpo.append("\n### Qué revisar esta semana\n\n"
                       "Sin caídas relevantes. Buen momento para probar algo nuevo "
                       "(un formato, un horario de envío) y medir el efecto.\n")
 
     if grupos["estables"]:
         nombres = ", ".join(k["etiqueta"].lower() for k in grupos["estables"])
-        cuerpo.append(f"\n### ➡️ Sin cambios relevantes\n\n{nombres}.\n")
+        cuerpo.append(f"\n### Sin cambios relevantes\n\n{nombres}.\n")
 
     desg = datos.get("desgloses", {})
     if desg.get("conversion_por_canal"):
         mejor = max(desg["conversion_por_canal"].items(), key=lambda kv: kv[1])
         peor = min(desg["conversion_por_canal"].items(), key=lambda kv: kv[1])
         cuerpo.append(
-            f"\n### 💡 Dato de la semana\n\n"
+            f"\n### Dato de la semana\n\n"
             f"El canal que mejor convierte es **{mejor[0]}** ({mejor[1]:.1f} %) y "
             f"el que menos, **{peor[0]}** ({peor[1]:.1f} %). "
             f"La diferencia es de {mejor[1] - peor[1]:.1f} puntos: vale la pena "

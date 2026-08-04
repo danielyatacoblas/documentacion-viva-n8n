@@ -17,7 +17,7 @@ Y una regla que descarta ideas antes de empezar:
 
 ---
 
-## 🟢 Listos para construir (impacto alto, riesgo bajo)
+## Listos para construir (impacto alto, riesgo bajo)
 
 ### 1. Transcripción y resumen de reuniones
 **Qué:** subir el audio de una reunión → transcripción + resumen con acuerdos y
@@ -40,7 +40,7 @@ que piden los auspiciadores (impacto, beneficiarios, fotos del período).
 
 ---
 
-## 🟡 Vale la pena explorar (impacto alto, requiere cuidado)
+## Vale la pena explorar (impacto alto, requiere cuidado)
 
 ### 4. Detección temprana de deserción
 **Qué:** con el histórico de asistencia, señalar qué participantes llevan dos
@@ -55,7 +55,7 @@ familia. Empezar con un umbral simple (dos faltas) antes que con un modelo.
 **Qué:** preguntar en lenguaje natural "¿cómo se reprocesa un lead fallido?" y
 que responda citando la ficha correspondiente.
 **Impacto:** medio-alto cuando el equipo crece.
-**Requisito previo:** que las fichas estén completas (proyecto 04 ✅).
+**Requisito previo:** que las fichas estén completas (proyecto 04 ).
 
 ### 6. Traducción de materiales a quechua/aimara
 **Qué:** versiones de convocatorias y materiales para comunidades andinas.
@@ -64,7 +64,7 @@ La IA hace el primer borrador, nunca la versión final.
 
 ---
 
-## 🔴 Descartados por ahora (y por qué)
+## Descartados por ahora (y por qué)
 
 | Idea | Por qué no |
 | --- | --- |

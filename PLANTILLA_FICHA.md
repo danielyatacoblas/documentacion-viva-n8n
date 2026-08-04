@@ -14,7 +14,7 @@
 > Generada automáticamente desde el JSON del workflow.
 > Última revisión: **[fecha]** · Responsable: **[área o persona]**
 
-## 1. Qué hace ✍️ *humano*
+## 1. Qué hace  *humano*
 
 Un párrafo en lenguaje no técnico: qué problema resuelve, para quién, y qué
 pasaría si no existiera. Debe entenderlo alguien que no sabe qué es n8n.
@@ -22,31 +22,31 @@ pasaría si no existiera. Debe entenderlo alguien que no sabe qué es n8n.
 Incluir siempre un **"Por qué existe"**: el contexto se pierde antes que el
 código.
 
-## 2. Dónde corre 🤖 *automático*
+## 2. Dónde corre  *automático*
 
 Instancia, nombre del archivo del workflow y etiquetas.
 
-## 3. Cuándo se dispara 🤖 *automático*
+## 3. Cuándo se dispara  *automático*
 
 Webhook (con su método y ruta), programación (traducida a lenguaje humano:
 "todos los días a las 08:00"), o manual.
 
-## 4. Servicios que toca 🤖 *automático*
+## 4. Servicios que toca  *automático*
 
 Lista de servicios externos (Sheets, Mailchimp, Telegram, APIs) y los
 **parámetros pendientes de configurar** detectados en el JSON.
 
-## 5. Pasos (orden de ejecución) 🤖 *automático*
+## 5. Pasos (orden de ejecución)  *automático*
 
 Los nodos en el orden real en que corren, siguiendo las conexiones, con las
 notas que tenga cada nodo.
 
-## 6. Riesgos detectados automáticamente 🤖 *automático*
+## 6. Riesgos detectados automáticamente  *automático*
 
 Nodos que llaman a servicios externos **sin ruta de error declarada**: si esa
 API falla, la ejecución se detiene.
 
-## 7. Qué hacer si falla ✍️ *humano*
+## 7. Qué hacer si falla  *humano*
 
 Lista numerada de **síntoma → qué revisar → cómo arreglarlo**. Esta es la
 sección que salva a quien recibe una alerta un sábado.
