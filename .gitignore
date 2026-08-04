@@ -6,3 +6,14 @@ __pycache__/
 # Salidas generadas (se regeneran con los scripts)
 data/bandeja_clasificada.csv
 reportes/
+
+# ── Credenciales: nunca deben entrar al repositorio ──
+*token*
+*.token
+.env
+.env.*
+*secret*
+*credential*
+*.pem
+*.key
+!*.key.example
