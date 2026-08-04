@@ -1,181 +1,160 @@
-# 04 · Asistente IA + documentación viva
+<h1 align="center">Documentación viva + asistente de IA</h1>
 
-[![tests](https://img.shields.io/badge/tests-47%20passed-brightgreen)](tests/)
-[![fichas](https://img.shields.io/badge/fichas-5%20autogeneradas-blueviolet)](fichas/)
-[![IA](https://img.shields.io/badge/IA-Claude%20(opcional)-8A63D2)](src/clasificador.py)
-[![licencia](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
+<p align="center"><i>La documentación se escribe sola leyendo los workflows</i></p>
 
-**Qué requisitos del aviso cubre:** implementar IA generativa (incluyendo **Claude Code**)
-para optimizar flujos internos · explorar nuevos casos de uso de IA ·
-**documentar los sistemas para que el equipo pueda mantenerlos a futuro**.
+<p align="center">![tests](https://img.shields.io/badge/tests-47%20passed-brightgreen) ![fichas](https://img.shields.io/badge/fichas-5%20autogeneradas-blueviolet) ![IA](https://img.shields.io/badge/IA-Claude%20(opcional)-8A63D2) ![licencia](https://img.shields.io/badge/licencia-MIT-blue)</p>
 
 ---
 
-## 🎬 Tres automatizaciones + el sistema que las mantiene documentadas
+## 🎥 Demo en video
 
-### A · Documentación viva — *la pieza central*
+<!-- ────────────────────────────────────────────────────────────────────
+     ESPACIO RESERVADO PARA EL VIDEO
 
-El problema real: la documentación se escribe una vez, el workflow cambia diez
-veces, y a los tres meses la documentación miente.
+     Cuando lo tengas subido a YouTube (recomiendo "no listado"), reemplaza
+     este bloque por la miniatura clickeable:
 
-**La solución: derivar la ficha del artefacto real.** El generador lee el JSON
-del workflow y extrae solo lo que se puede saber sin intervención humana:
+     [![Ver la demo](https://img.youtube.com/vi/TU_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/TU_VIDEO_ID)
 
-```
-python scripts/generar_fichas.py
+     Y borra el aviso de abajo.
+     ──────────────────────────────────────────────────────────────────── -->
 
-  ✓ fichas/ficha_leads.md              (del proyecto 01)
-  ✓ fichas/ficha_generar_contenido.md  (del proyecto 02)
-  ✓ fichas/ficha_publicar_redes.md     (del proyecto 02)
-  ✓ fichas/ficha_bandeja_ia.md         (de este proyecto)
-  ✓ fichas/ficha_reporte_semanal.md    (de este proyecto)
-```
+> 🎬 *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
+> en local en menos de dos minutos siguiendo [⚡ Probarlo](#-probarlo-en-2-minutos).
 
-| Sección de la ficha | Quién la escribe |
-| --- | --- |
-| Qué hace / por qué existe | ✍️ Humano |
-| Dónde corre y con qué etiquetas | 🤖 Del JSON |
-| **Cuándo se dispara** (traduce `0 8 * * *` → "todos los días a las 08:00") | 🤖 Del JSON |
-| **Servicios que toca** y parámetros `REEMPLAZAR_*` pendientes | 🤖 Del JSON |
-| **Pasos en orden real de ejecución** (recorre las conexiones) | 🤖 Del JSON |
-| **Riesgos**: nodos externos sin ruta de error declarada | 🤖 Del JSON |
-| Qué hacer si falla | ✍️ Humano |
+---
 
-> El sistema **se documenta a sí mismo**: dos de las cinco fichas son de sus
-> propios workflows.
+## 🎯 El problema
 
-### B · Bandeja de entrada inteligente
+La documentación se escribe una vez, el flujo cambia diez veces, y a los tres meses la documentación miente. Cuando algo falla un sábado, quien está de turno no tiene dónde mirar.
 
-```
-Correo entrante → Claude clasifica + redacta borrador → hoja priorizada
-                       │
-                       ├─ queja / alianza / urgencia → aviso al equipo (lo contesta una persona)
-                       └─ consulta normal → borrador listo para revisar y enviar
-```
+## 💡 Qué hace este proyecto
 
-Sobre los 30 correos ficticios:
+1. **Fichas que se derivan del artefacto real**: el generador lee el JSON del workflow y extrae disparadores, servicios, parámetros pendientes, orden real de ejecución y riesgos.
+2. **Solo dos campos los escribe una persona**: qué hace y qué hacer si falla. Todo lo demás se regenera con un comando.
+3. **Bandeja de entrada inteligente**: clasifica correos y redacta borradores, pero quejas, alianzas y urgencias siempre las contesta alguien.
+4. **Reporte semanal** en lenguaje natural, diseñado para señalar problemas.
 
-```
-Correos procesados: 30
-Por categoría: inscripcion=14, alianza=5, otro=4, queja=2, voluntariado=2, spam=2, administrativo=1
-Prioridad alta: 3 · media: 18 · baja: 9
-Requieren persona sí o sí: 8 (quejas, alianzas y urgencias)
-Spam filtrado: 2
-Borradores listos para revisar: 28
-```
+---
 
-**La regla dura está en el código, no solo en el README:** una queja o una
-alianza siempre marcan `requiere_humano`, aunque la IA diga lo contrario — y el
-nodo de n8n aplica la misma regla. Hay tests para ambos.
+## 🗺️ Cómo funciona
 
-### C · Reporte semanal automático
-
-Lee los KPIs del dashboard (proyecto 03) y redacta el resumen del lunes.
-**Diseñado para señalar problemas**, no para felicitar:
-
-```markdown
-### 📉 Lo que bajó
-- **Clics de email**: 4.1 % (-24.0 %)
-- **Beneficiarios activos**: 58 (-15.9 %)
-
-### 🔍 Qué revisar esta semana
-1. **Clics de email** cayó 24.0 %: revisar el contenido y la ubicación del
-   llamado a la acción dentro del correo.
-2. **Beneficiarios activos** cayó 15.9 %: confirmar que la asistencia se está
-   registrando completa.
-
-### 💡 Dato de la semana
-El canal que mejor convierte es **referido** (66.7 %) y el que menos,
-**facebook** (20.9 %). La diferencia es de 45.8 puntos.
+```mermaid
+flowchart TD
+    subgraph A ["📄 Documentación viva"]
+        W["workflow.json"] --> G["Generador"]
+        G --> F["Ficha en Markdown"]
+        H["✍️ Qué hace<br/>Qué hacer si falla"] --> F
+    end
+    subgraph B ["📬 Bandeja inteligente"]
+        M["Correo entrante"] --> K["Clasificar + redactar"]
+        K --> D{"¿Queja, alianza<br/>o urgencia?"}
+        D -->|sí| P["👤 Lo contesta<br/>una persona"]
+        D -->|no| Q["📝 Borrador listo<br/>para revisar"]
+    end
+    subgraph C ["📊 Reporte semanal"]
+        R["KPIs del panel"] --> S["Qué mejoró<br/>qué empeoró<br/>qué revisar"]
+    end
 ```
 
 ---
 
-## ⚡ Probarlo en 2 minutos (sin API key)
+## ⚡ Probarlo en 2 minutos
 
 ```bash
 pip install pytest
-python scripts/generar_correos.py       # 30 correos ficticios
-python scripts/generar_fichas.py        # documentación de los workflows reales
-python scripts/simular_asistente.py     # las tres automatizaciones
-python -m pytest tests/ -v              # 47 tests
+python scripts/generar_correos.py     # 30 correos ficticios
+python scripts/generar_fichas.py      # documentación de los workflows reales
+python scripts/simular_asistente.py   # las tres automatizaciones
+python -m pytest -v                   # 47 tests
 ```
 
-Con Claude (opcional): `pip install anthropic`, exporta `ANTHROPIC_API_KEY` y
-usa `--motor claude`. **Si la API falla, el sistema no se cae**: cae al motor de
-reglas y lo deja registrado en la columna `motor`.
+Funciona **sin API key**: el clasificador tiene un motor de reglas
+equivalente. Si la IA falla, el sistema cae a él y lo deja registrado.
 
 ---
 
-## 🐳 Con n8n
+### 🤖 El sistema se documenta a sí mismo
 
-```bash
-docker compose up -d      # http://localhost:5678
-```
+De las cinco fichas que genera, **dos son de sus propios workflows**. Y la integración continua verifica que sigan al día: si alguien cambia un flujo y no regenera la documentación, el build falla.
 
-| Workflow | Nodos | Qué hace |
-| --- | --- | --- |
-| `workflow_bandeja.json` | 8 | IMAP → Claude → clasificación con respaldo por reglas → hoja → aviso si requiere persona |
-| `workflow_reporte_semanal.json` | 5 | Lunes 08:00 → lee KPIs → arma resumen → correo al equipo (con aviso si falla el envío) |
-
----
-
-## 🤝 Cómo uso Claude Code (lo que el aviso pide explícitamente)
-
-Este portafolio completo se construyó con Claude Code, y de ahí salen prácticas
-que aplicaría desde el primer día en el Club:
-
-- **Lógica duplicada, verificada automáticamente.** Cuando un flujo vive en
-  Python *y* en un nodo de n8n, hay un test que ejecuta ambos y compara los
-  resultados (`test_paridad_js.py` en el proyecto 01). Sin eso, las dos copias
-  se desincronizan en silencio.
-- **La política se convierte en test.** "Nada se publica sin aprobación" no es
-  una promesa del README: es `pytest.raises(ErrorAprobacion)`.
-- **Documentación derivada del artefacto**, no escrita en paralelo (este proyecto).
-- **Data ficticia con semilla fija** para que cualquiera reproduzca los mismos
-  resultados sin datos reales de personas.
+El generador traduce lo técnico a lenguaje humano — `0 8 * * 1` se convierte en *"cada lunes a las 08:00"*— y señala riesgos que nadie escribiría a mano, como los nodos que llaman a servicios externos sin declarar qué hacer si fallan.
 
 ---
 
 ## 📁 Estructura
 
 ```
-04_asistente_ia_documentacion/
 ├── src/
 │   ├── fichas.py             # analiza el JSON de n8n y genera la ficha
 │   ├── clasificador.py       # bandeja: reglas + Claude opcional
 │   └── reporte.py            # resumen semanal en lenguaje natural
-├── scripts/
-│   ├── generar_correos.py    # 30 correos ficticios (quejas, spam, alianzas)
-│   ├── generar_fichas.py     # registro de workflows + campos humanos
-│   ├── simular_asistente.py  # corre las tres automatizaciones
-│   └── build_workflow.py
-├── workflows/                # 2 workflows n8n + su código fuente JS
 ├── fichas/                   # 5 fichas generadas (documentación viva)
-├── tests/                    # 41 tests
-├── PLANTILLA_FICHA.md        # el estándar de documentación
-└── CASOS_DE_USO_FUTUROS.md   # backlog priorizado por impacto/esfuerzo/riesgo
+├── workflows/                # 2 workflows n8n + su código fuente
+├── scripts/                  # data ficticia y simulación
+└── tests/                    # 47 tests
 ```
 
 ---
 
-## 🧪 Qué está probado
+## 🌿 Flujo de trabajo con Git
 
-| Área | Tests |
+El repositorio sigue **Git Flow**: `main` siempre desplegable, `develop` como
+integración, y una rama por cambio. Los merges son `--no-ff` para que cada
+funcionalidad quede como un bloque legible en el historial, y cada versión
+lleva su tag.
+
+```mermaid
+gitGraph
+   commit id: "chore: repo setup"
+   branch develop
+   checkout develop
+   branch feature/core
+   commit id: "feat: core logic"
+   checkout develop
+   merge feature/core
+   branch feature/tests
+   commit id: "test: suite"
+   checkout develop
+   merge feature/tests
+   checkout main
+   merge develop tag: "v1.0.0"
+   checkout develop
+   branch fix/review
+   commit id: "fix: review findings"
+   checkout develop
+   merge fix/review
+   checkout main
+   merge develop tag: "v1.1.0"
+```
+
+| Rama | Para qué |
 | --- | --- |
-| Clasificación | 9 tipos de correo reales → categoría correcta; ignora tildes y mayúsculas |
-| **Regla dura** | **Quejas, alianzas y urgencias SIEMPRE requieren persona** |
-| Spam | Se detecta y **no** genera borrador de respuesta |
-| Prioridad y orden | La queja va primera, el spam al final |
-| Fichas | Detecta disparadores, servicios, `REEMPLAZAR_*` y nodos sin ruta de error |
-| Orden de nodos | Recorre cada cadena completa; ningún nodo se pierde |
-| Cron | `0 8 * * *` → "todos los días a las 08:00" |
-| Reporte | Una baja en "días a respuesta" cuenta como **mejora** (menos es mejor) |
-| Reporte | No inventa números y siempre dice algo útil, incluso si todo va bien |
+| `main` | Solo versiones liberadas. Cada merge lleva su tag. |
+| `develop` | Integración de todo lo terminado. |
+| `feature/*` | Una funcionalidad nueva. |
+| `fix/*` | Una corrección concreta. |
+| `release/*` | Preparación de la versión, luego se fusiona a `main` y `develop`. |
+
+Los mensajes siguen [Conventional Commits](https://www.conventionalcommits.org/):
+`feat:`, `fix:`, `test:`, `docs:`, `chore:` — con el porqué del cambio en el
+cuerpo, no solo el qué.
 
 ---
 
-## 📌 Estado
+## 📚 Documentación
 
-✅ **Funcional y probado en local.** 47 tests en verde, 5 fichas generadas desde
-workflows reales, 30 correos ficticios y dos workflows n8n importables.
+| Documento | Contenido |
+| --- | --- |
+| [`GUIA.md`](GUIA.md) | Guía técnica completa: arquitectura, decisiones, configuración y puesta en marcha |
+| [`PLANTILLA_FICHA.md`](PLANTILLA_FICHA.md) | El estándar de documentación: qué genera la máquina y qué escribe una persona |
+| [`CASOS_DE_USO_FUTUROS.md`](CASOS_DE_USO_FUTUROS.md) | Backlog de IA priorizado por impacto, esfuerzo y riesgo, con lo descartado y su motivo |
+
+---
+
+## 📄 Licencia
+
+[MIT](LICENSE) · Daniel Yataco Blas
+
+> Proyecto de demostración construido con **datos ficticios**. No es un sistema
+> en producción de ninguna organización.
