@@ -2,7 +2,11 @@
 
 <p align="center"><i>La documentación se escribe sola leyendo los workflows</i></p>
 
-<p align="center">![tests](https://img.shields.io/badge/tests-47%20passed-brightgreen) ![fichas](https://img.shields.io/badge/fichas-5%20autogeneradas-blueviolet) ![IA](https://img.shields.io/badge/IA-Claude%20(opcional)-8A63D2) ![licencia](https://img.shields.io/badge/licencia-MIT-blue)</p>
+<p align="center">
+  <img alt="tests" src="https://img.shields.io/badge/tests-47%20passed-brightgreen">
+  <img alt="fichas" src="https://img.shields.io/badge/fichas-5%20autogeneradas-blueviolet">
+  <img alt="IA" src="https://img.shields.io/badge/IA-Claude%20(opcional">-8A63D2) <img alt="licencia" src="https://img.shields.io/badge/licencia-MIT-blue">
+</p>
 
 ---
 
