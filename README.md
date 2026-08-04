@@ -10,7 +10,7 @@
 
 ---
 
-## 🎥 Demo en video
+## Demo en video
 
 <!-- ────────────────────────────────────────────────────────────────────
      ESPACIO RESERVADO PARA EL VIDEO
@@ -23,16 +23,16 @@
      Y borra el aviso de abajo.
      ──────────────────────────────────────────────────────────────────── -->
 
-> 🎬 *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
-> en local en menos de dos minutos siguiendo [⚡ Probarlo](#-probarlo-en-2-minutos).
+> *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
+> en local en menos de dos minutos siguiendo [Probarlo](#probarlo-en-2-minutos).
 
 ---
 
-## 🎯 El problema
+## El problema
 
 La documentación se escribe una vez, el flujo cambia diez veces, y a los tres meses la documentación miente. Cuando algo falla un sábado, quien está de turno no tiene dónde mirar.
 
-## 💡 Qué hace este proyecto
+## Qué hace este proyecto
 
 1. **Fichas que se derivan del artefacto real**: el generador lee el JSON del workflow y extrae disparadores, servicios, parámetros pendientes, orden real de ejecución y riesgos.
 2. **Solo dos campos los escribe una persona**: qué hace y qué hacer si falla. Todo lo demás se regenera con un comando.
@@ -41,29 +41,29 @@ La documentación se escribe una vez, el flujo cambia diez veces, y a los tres m
 
 ---
 
-## 🗺️ Cómo funciona
+## Cómo funciona
 
 ```mermaid
 flowchart TD
-    subgraph A ["📄 Documentación viva"]
+    subgraph A [" Documentación viva"]
         W["workflow.json"] --> G["Generador"]
         G --> F["Ficha en Markdown"]
-        H["✍️ Qué hace<br/>Qué hacer si falla"] --> F
+        H[" Qué hace<br/>Qué hacer si falla"] --> F
     end
-    subgraph B ["📬 Bandeja inteligente"]
+    subgraph B [" Bandeja inteligente"]
         M["Correo entrante"] --> K["Clasificar + redactar"]
         K --> D{"¿Queja, alianza<br/>o urgencia?"}
-        D -->|sí| P["👤 Lo contesta<br/>una persona"]
-        D -->|no| Q["📝 Borrador listo<br/>para revisar"]
+        D -->|sí| P[" Lo contesta<br/>una persona"]
+        D -->|no| Q[" Borrador listo<br/>para revisar"]
     end
-    subgraph C ["📊 Reporte semanal"]
+    subgraph C [" Reporte semanal"]
         R["KPIs del panel"] --> S["Qué mejoró<br/>qué empeoró<br/>qué revisar"]
     end
 ```
 
 ---
 
-## ⚡ Probarlo en 2 minutos
+## Probarlo en 2 minutos
 
 ```bash
 pip install pytest
@@ -78,7 +78,7 @@ equivalente. Si la IA falla, el sistema cae a él y lo deja registrado.
 
 ---
 
-### 🤖 El sistema se documenta a sí mismo
+### El sistema se documenta a sí mismo
 
 De las cinco fichas que genera, **dos son de sus propios workflows**. Y la integración continua verifica que sigan al día: si alguien cambia un flujo y no regenera la documentación, el build falla.
 
@@ -86,7 +86,7 @@ El generador traduce lo técnico a lenguaje humano — `0 8 * * 1` se convierte 
 
 ---
 
-## 📁 Estructura
+## Estructura
 
 ```
 ├── src/
@@ -101,7 +101,7 @@ El generador traduce lo técnico a lenguaje humano — `0 8 * * 1` se convierte 
 
 ---
 
-## 🌿 Flujo de trabajo con Git
+## Flujo de trabajo con Git
 
 El repositorio sigue **Git Flow**: `main` siempre desplegable, `develop` como
 integración, y una rama por cambio. Los merges son `--no-ff` para que cada
@@ -146,7 +146,7 @@ cuerpo, no solo el qué.
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 | Documento | Contenido |
 | --- | --- |
@@ -156,7 +156,7 @@ cuerpo, no solo el qué.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 [MIT](LICENSE) · Daniel Yataco Blas
 
