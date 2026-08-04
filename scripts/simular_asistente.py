@@ -75,8 +75,7 @@ def main():
              for c in clasificados]
     salida_bandeja = ROOT / "data" / "bandeja_clasificada.csv"
     with salida_bandeja.open("w", newline="", encoding="utf-8") as f:
-        wr = csv.DictWriter(f, fieldnames=list(filas[0].keys(, lineterminator="
-")))
+        wr = csv.DictWriter(f, fieldnames=list(filas[0].keys()))
         wr.writeheader(); wr.writerows(filas)
 
     # ── 2. Reporte semanal ──
