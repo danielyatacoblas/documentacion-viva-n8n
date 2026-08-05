@@ -45,18 +45,18 @@ La documentación se escribe una vez, el flujo cambia diez veces, y a los tres m
 
 ```mermaid
 flowchart TD
-    subgraph A [" Documentación viva"]
+    subgraph A ["Documentación viva"]
         W["workflow.json"] --> G["Generador"]
         G --> F["Ficha en Markdown"]
-        H[" Qué hace<br/>Qué hacer si falla"] --> F
+        H["Qué hace<br/>Qué hacer si falla"] --> F
     end
-    subgraph B [" Bandeja inteligente"]
+    subgraph B ["Bandeja inteligente"]
         M["Correo entrante"] --> K["Clasificar + redactar"]
         K --> D{"¿Queja, alianza<br/>o urgencia?"}
-        D -->|sí| P[" Lo contesta<br/>una persona"]
-        D -->|no| Q[" Borrador listo<br/>para revisar"]
+        D -->|sí| P["Lo contesta<br/>una persona"]
+        D -->|no| Q["Borrador listo<br/>para revisar"]
     end
-    subgraph C [" Reporte semanal"]
+    subgraph C ["Reporte semanal"]
         R["KPIs del panel"] --> S["Qué mejoró<br/>qué empeoró<br/>qué revisar"]
     end
 ```
