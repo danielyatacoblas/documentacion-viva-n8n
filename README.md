@@ -11,38 +11,11 @@
 
 ---
 
-## Demo en video
-
-<!-- ────────────────────────────────────────────────────────────────────
-     ESPACIO RESERVADO PARA EL VIDEO
-
-     Cuando lo tengas subido a YouTube (recomiendo "no listado"), reemplaza
-     este bloque por la miniatura clickeable:
-
-     [![Ver la demo](https://img.youtube.com/vi/TU_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/TU_VIDEO_ID)
-
-     Y borra el aviso de abajo.
-     ──────────────────────────────────────────────────────────────────── -->
-
-> *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
-> en local en menos de dos minutos siguiendo [Probarlo](#probarlo-en-2-minutos).
-
----
-
-## El problema
+## Para qué existe este repositorio
 
 La documentación se escribe una vez, el flujo cambia diez veces, y a los tres meses la documentación miente. Cuando algo falla un sábado, quien está de turno no tiene dónde mirar.
 
-## Qué hace este proyecto
-
-1. **Fichas que se derivan del artefacto real**: el generador lee el JSON del workflow y extrae disparadores, servicios, parámetros pendientes, orden real de ejecución y riesgos.
-2. **Solo dos campos los escribe una persona**: qué hace y qué hacer si falla. Todo lo demás se regenera con un comando.
-3. **Bandeja de entrada inteligente**: clasifica correos y redacta borradores, pero quejas, alianzas y urgencias siempre las contesta alguien.
-4. **Reporte semanal** en lenguaje natural, diseñado para señalar problemas.
-
----
-
-## Cómo funciona
+**Este proyecto genera la ficha de cada flujo leyendo su propio JSON, clasifica el correo entrante y redacta borradores, y arma el reporte semanal. Lo que exige criterio sigue pasando por una persona.**
 
 ```mermaid
 flowchart TD
@@ -61,6 +34,39 @@ flowchart TD
         R["KPIs del panel"] --> S["Qué mejoró<br/>qué empeoró<br/>qué revisar"]
     end
 ```
+
+---
+
+## Demo en video
+
+<!-- ────────────────────────────────────────────────────────────────────
+     ESPACIO RESERVADO PARA EL VIDEO
+
+     Cuando lo tengas subido a YouTube (recomiendo "no listado"), reemplaza
+     este bloque por la miniatura clickeable:
+
+     [![Ver la demo](https://img.youtube.com/vi/TU_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/TU_VIDEO_ID)
+
+     Y borra el aviso de abajo.
+     ──────────────────────────────────────────────────────────────────── -->
+
+> *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
+> en local en menos de dos minutos siguiendo [Probarlo](#probarlo-en-2-minutos).
+
+---
+
+## Qué hace este proyecto
+
+1. **Fichas que se derivan del artefacto real**: el generador lee el JSON del workflow y extrae disparadores, servicios, parámetros pendientes, orden real de ejecución y riesgos.
+2. **Solo dos campos los escribe una persona**: qué hace y qué hacer si falla. Todo lo demás se regenera con un comando.
+3. **Bandeja de entrada inteligente**: clasifica correos y redacta borradores, pero quejas, alianzas y urgencias siempre las contesta alguien.
+4. **Reporte semanal** en lenguaje natural, diseñado para señalar problemas.
+
+---
+
+## Cómo funciona por dentro
+
+El recorrido completo está en el diagrama del principio. Estas son las piezas que lo ejecutan:
 
 ---
 
