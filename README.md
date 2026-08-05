@@ -37,21 +37,21 @@ flowchart TD
 
 ---
 
-## Demo en video
+## Una ficha generada
 
-<!-- ────────────────────────────────────────────────────────────────────
-     ESPACIO RESERVADO PARA EL VIDEO
+Esto no lo escribió nadie: sale de leer el JSON del workflow. Los disparadores,
+los servicios, el orden real de ejecución, las credenciales pendientes y los
+nodos sin ruta de error se derivan del archivo. Solo **1. Qué hace** y
+**7. Qué hacer si falla** los escribe una persona, porque eso es intención y la
+intención no está en el JSON.
 
-     Cuando lo tengas subido a YouTube (recomiendo "no listado"), reemplaza
-     este bloque por la miniatura clickeable:
+<p align="center">
+  <img src="docs/ficha_leads.png" alt="Ficha generada del flujo de leads: qué hace, dónde corre, cuándo se dispara, servicios que toca, credenciales pendientes, orden de ejecución de los 12 nodos, riesgos detectados y qué hacer si falla" width="820">
+</p>
 
-     [![Ver la demo](https://img.youtube.com/vi/TU_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/TU_VIDEO_ID)
-
-     Y borra el aviso de abajo.
-     ──────────────────────────────────────────────────────────────────── -->
-
-> *Video de la demo en camino.* Mientras tanto, el proyecto corre completo
-> en local en menos de dos minutos siguiendo [Probarlo](#probarlo-en-2-minutos).
+Cuando el workflow cambia, se regenera con `python scripts/generar_fichas.py` y
+la ficha vuelve a decir la verdad. Ese es el punto: una documentación que no se
+puede quedar desactualizada sin que alguien lo note.
 
 ---
 

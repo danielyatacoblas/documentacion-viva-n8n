@@ -236,9 +236,9 @@ def generar_ficha(info: dict, *, que_hace: str = "", si_falla: list[str] | None 
 
     return f"""# Ficha · {info['nombre']}
 
-> Generada automáticamente desde el JSON del workflow.
-> Regenerar con: `python scripts/generar_fichas.py`
-> Responsable: **{responsable}**
+> Generada automáticamente desde el JSON del workflow.<br>
+> Regenerar con: `python scripts/generar_fichas.py`<br>
+> Responsable: **{responsable}**<br>
 > Última generación: **{f}**
 
 ## 1. Qué hace

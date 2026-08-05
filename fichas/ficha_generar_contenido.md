@@ -1,8 +1,8 @@
 # Ficha · Club STEM · 1. Generar borradores con IA
 
-> Generada automáticamente desde el JSON del workflow.
-> Regenerar con: `python scripts/generar_fichas.py`
-> Responsable: **Comunicaciones**
+> Generada automáticamente desde el JSON del workflow.<br>
+> Regenerar con: `python scripts/generar_fichas.py`<br>
+> Responsable: **Comunicaciones**<br>
 > Última generación: **2026-08-05**
 
 ## 1. Qué hace
