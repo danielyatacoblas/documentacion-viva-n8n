@@ -1,8 +1,8 @@
 # Ficha · Club STEM · Reporte semanal automático
 
-> Generada automáticamente desde el JSON del workflow.
-> Regenerar con: `python scripts/generar_fichas.py`
-> Responsable: **Coordinación**
+> Generada automáticamente desde el JSON del workflow.<br>
+> Regenerar con: `python scripts/generar_fichas.py`<br>
+> Responsable: **Coordinación**<br>
 > Última generación: **2026-08-05**
 
 ## 1. Qué hace
