@@ -214,7 +214,7 @@ def generar_ficha(info: dict, *, que_hace: str = "", si_falla: list[str] | None 
 
     if info["pendientes"]:
         pend = "\n".join(f"- `{p}`" for p in info["pendientes"])
-        pend_bloque = (f"\n>  **Antes de activarlo hay que configurar:**\n\n{pend}\n")
+        pend_bloque = (f"\n> **Antes de activarlo hay que configurar:**\n\n{pend}\n")
     else:
         pend_bloque = "\n>  No hay parámetros pendientes de configurar.\n"
 

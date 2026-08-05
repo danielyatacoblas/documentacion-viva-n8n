@@ -3,7 +3,7 @@
 > Generada automáticamente desde el JSON del workflow.
 > Regenerar con: `python scripts/generar_fichas.py`
 > Responsable: **Comunicaciones**
-> Última generación: **2026-08-04**
+> Última generación: **2026-08-05**
 
 ## 1. Qué hace
 
@@ -28,7 +28,7 @@ Etiquetas: club-stem, redes
 - LinkedIn
 - Telegram
 
->  **Antes de activarlo hay que configurar:**
+> **Antes de activarlo hay que configurar:**
 
 - `REEMPLAZAR_CHAT_ID`
 - `REEMPLAZAR_ID_HOJA`

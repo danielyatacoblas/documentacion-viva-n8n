@@ -92,13 +92,19 @@ def redactar(datos: dict, hoy: date | None = None) -> str:
                 f"({hero['variacion']:+.1f} % frente al período anterior)."
                 if hero else "Resumen del período.")
 
-    def bloque(titulo, items, signo):
+    def bloque(titulo, items, signo=""):
+        """El signo va delante del título solo si existe.
+
+        Concatenarlo siempre dejaba un espacio de más cuando venía vacío, y el
+        encabezado salía como '###  Lo que mejoró'. Se nota en el Markdown
+        renderizado y en la salida de la terminal."""
         if not items:
             return ""
         filas = "\n".join(
             f"- **{k['etiqueta']}**: {_formato(k['valor'], k['unidad'])} "
             f"({k['variacion']:+.1f} %)" for k in items)
-        return f"\n### {signo} {titulo}\n\n{filas}\n"
+        encabezado = f"{signo} {titulo}".strip()
+        return f"\n### {encabezado}\n\n{filas}\n"
 
     # Los encabezados hablan de "mejoró/empeoró", no de "subió/bajó": en
     # métricas como los días de respuesta, subir ES empeorar.
