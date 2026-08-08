@@ -11,6 +11,10 @@
 
 
 <p align="center">
+  <img src="docs/portada.svg" alt="Documentación viva: se escribe sola leyendo los workflows" width="100%">
+</p>
+
+<p align="center">
   <a href="docs/flujo.svg">
     <img src="docs/flujo.svg" alt="Lo que se escribe solo leyendo los workflows, y lo que sigue pasando por una persona" width="100%">
   </a>
