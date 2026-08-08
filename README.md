@@ -9,6 +9,19 @@
   <img alt="licencia" src="https://img.shields.io/badge/licencia-MIT-blue">
 </p>
 
+
+<p align="center">
+  <a href="docs/flujo.svg">
+    <img src="docs/flujo.svg" alt="Lo que se escribe solo leyendo los workflows, y lo que sigue pasando por una persona" width="100%">
+  </a>
+</p>
+
+<sub>Ábrelo en grande: <a href="docs/flujo.svg"><code>docs/flujo.svg</code></a>.
+Las cifras de las tarjetas no están escritas a mano — las pone
+<a href="scripts/diagrama.py"><code>scripts/diagrama.py</code></a> leyendo
+<code>data/</code>, <code>fichas/</code> y los propios workflows. Si cambian los datos, se vuelve a correr y el dibujo se corrige
+solo.</sub>
+
 ---
 
 ## Para qué existe este repositorio
